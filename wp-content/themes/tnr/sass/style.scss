@@ -1,0 +1,622 @@
+/*
+ Theme Name: TNR Custom
+ Theme URI: http://deathofcmyk.co.uk
+ Author: Kev Rowe
+ Author URI: http://deathofcmyk.co.uk
+ Description: Customised theme for TNR roofing company, including sliding homepage feature and gallery
+ Template: twentytwelve
+ Version: 1.0
+ Tags: dark, gray, black, one-column, two-columns, right-sidebar, flexible-width, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
+ */
+
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+$lightergrey: #888;
+$lightgrey: #696969;
+$grey: #444;
+$darkgrey: #141414;
+$orange: #ff7200;
+$darkorange: #A73100;
+
+$pagewidth: 940px;
+
+@mixin all-vendors($property, $values...) {
+  #{$property}: $values;
+  -moz-#{$property}: $values;
+  -o-#{$property}: $values;
+  -webkit-#{$property}: $values;
+}
+
+@mixin inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom:1;
+}
+
+@mixin full-width {
+  width: 100%;
+}
+
+/**
+ *    Proto Grid
+ *    Width:  914px
+ *    Cell:   298px
+ *    Gutter: 10px
+ */
+ .row {
+  width: 914px;
+
+  &:after {
+    display: table;
+    line-height: 0;
+    content: " ";
+    clear: both;
+  }
+
+  .span1, .span2, .span3 {
+    float: left;
+    margin: 0 0 0 10px;
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+
+  .span1 {
+    width: 298px;
+  }
+
+  .span2 {
+    width: 606px;
+  }
+
+  .span3 {
+    width: 914px;
+  }
+}
+
+/**
+ *   Basic Page Structure
+ */
+ body {
+  background-color: $darkgrey;
+  margin: 0;
+  min-height: 100%;
+  min-width: $pagewidth;
+  font: 62.5% Arial, Helvetica, sans-serif; /* Reset font size to 10px */
+}
+
+::selection {
+  color: #fff;
+  background-color: $orange;
+}
+
+strong {
+  font-weight: bold;
+}
+
+img {
+  vertical-align: top;
+}
+
+.main-heading {
+  color: $orange;
+  font-size: 3em;
+  letter-spacing: -1px;
+  margin: 0 0 6px 0;
+}
+
+.wrapper {
+  width: $pagewidth;
+  margin: 0 auto;
+  position: relative;
+}
+
+.top {
+  @include full-width;
+  background-color: $grey;
+  height: 80px;
+  position: relative;
+  min-width: $pagewidth;
+}
+
+.top-bar {
+  @include full-width;
+  background-color: $lightgrey;
+  height: 7px;
+  position: absolute;
+  top: 62px;
+  left: 0px;
+  min-width: $pagewidth;
+}
+
+.feature {
+  @include full-width;
+  background-color: #fff;
+  min-width: $pagewidth;
+}
+
+.main {
+  @include full-width;
+  min-width: $pagewidth;
+
+  a:link, a:hover, a:visited {
+    color: $orange;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom: 1px dotted;
+  }
+}
+
+/**
+ *   Top Navigation
+ */
+ .top-nav {
+  list-style-type: none;
+  padding: 36px 0 0 0;
+  float: left;
+}
+
+.top-nav-logo {
+  position: absolute;
+  right: 15px;
+}
+
+.top-nav-item {
+  margin: 0 50px 0 0;
+  position: relative;
+  font-size: 3em;
+  height: 33px;
+  line-height: 1.2;
+  @include inline-block;
+  z-index: 1000;
+
+  &:hover .top-nav-hoverline {
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+
+  &:hover a {
+    bottom: 5px;
+    color: #fff;
+    padding: 0 0 5px 0;
+  }
+}
+
+$navtime : .3s;
+
+.top-nav-hoverline {
+  width: 100%;
+  height: 7px;
+  bottom: 10px;
+  position: relative;
+  background: url("img/nav-hover.gif") repeat-x bottom;
+  opacity: 0;
+  filter: alpha(opacity=0); /* Old IE */
+  @include all-vendors(transition, opacity $navtime);
+}
+
+.top-nav-item a {
+  color: $lightgrey;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  z-index: 1000;
+  @include all-vendors(transition, bottom $navtime, color $navtime);
+}
+
+.top-nav-caption {
+  color: $orange;
+  float: left;
+  font-size: 2.5em;
+  position: relative;
+  margin-top: 7px;
+  z-index: 1000;
+}
+
+/**
+ *   Header
+ */
+ .feature {
+  height: 217px;
+  background: url("img/header-bg.gif");
+}
+
+.header-offset {
+  position: absolute;
+  top: -41px;
+  right: 0;
+  z-index: 0;
+}
+
+.primary-heading {
+  color: $grey;
+  font-size: 6em;
+  padding-top: 14px;
+  @include all-vendors(text-shadow, -1px 2px 0 $lightergrey);
+}
+
+.secondary-heading {
+  color: $orange;
+  font-size: 2.5em;
+  @include all-vendors(text-shadow, -1px 1px 0 $grey);
+}
+
+.feature-secondary {
+  margin-top: 10px;
+  width: 220px;
+}
+
+/**
+ *   Main body
+ */
+
+ .content {
+  background: url('img/content-bg.gif') no-repeat top;
+  margin-top: 20px;
+  padding: 12px;
+  min-height: 350px;
+}
+
+p {
+  font-size: 1.4em;
+  color: #fff;
+  margin: 0 0 10px;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -1px;
+  color: $orange;
+}
+
+h2 {
+  font-size: 2.4em;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.narrow-caps {
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.primary {
+  width: 624px;
+  @include inline-block;
+}
+
+.secondary {
+  background-color: #fff;
+  vertical-align: top;
+  width: 270px;
+  margin-left: 9px;
+  padding: 10px 0 10px 10px;
+  @include inline-block;
+}
+
+/**
+ *  Gallery
+ */
+ .small-double-thumblist {
+  margin: 0;
+  padding: 0;
+}
+
+.ngg-gallery-thumbnail {
+  margin:0;
+}
+
+.small-double-thumblist li,
+.ngg-gallery-thumbnail img {
+  float: left;
+  margin: 0 10px 10px 0;
+  line-height: 0;
+  background: none;
+  border: 0 none;
+  padding: 0;
+}
+
+.slide {
+  position: absolute;
+  display: none;
+}
+
+.shown {
+  display: block;
+}
+
+.thumb-carousel {
+  height: 132px;
+  background-color: $grey;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+
+  .thumb {
+    width: 212px;
+    float: left;
+  }
+  .info {
+    padding: 10px 5px 5px;
+    width: 380px;
+    vertical-align: top;
+    float:left;
+    overflow: hidden;
+    position: relative;
+
+    h2 {
+      color: $orange;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin: 0 0 2px;
+    }
+  }
+  .next {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 22px;
+
+    a {
+      height: 74px;
+      padding-top: 58px;
+      display: block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.banner {
+  height: 76px;
+  background: url("img/banner-bg.png") no-repeat;
+  padding: 3px 0 0 35px;
+  margin-bottom: 10px;
+
+  h2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: $darkgrey;
+    margin: 0 0 2px 10px;
+  }
+
+  p {
+    font-size: 1.2em;
+    margin: 0;
+  }
+
+  a:link, a:hover, a:visited {
+    color: $darkgrey;
+    font-weight: 600;
+    border-bottom: 1px solid;
+  }
+
+  a:hover {
+    background-color: $orange;
+  }
+}
+
+.feature-block {
+  background-color: $grey;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.article-wrap {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: $lightgrey;
+}
+
+.article-wrap > :last-child {
+  margin-bottom: 0;
+}
+
+/**
+ *  Forms
+ */
+ .form-label {
+  display: block;
+  color: #fff;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  margin: 0 0 5px 0;
+  cursor: pointer;
+}
+
+.form-input {
+  padding: 5px;
+  border: 0 none;
+  font: 1.3em 'Trebuchet MS', sans-serif;
+  font-weight: normal;
+  background-color: $lightgrey;
+  color: #fff;
+  outline: 0;
+  margin: 0;
+
+  @include all-vendors('transition', all 0.3s);
+
+  &:focus {
+    background-color: #fff;
+    @include all-vendors('box-shadow', 2px 2px 0px #AAA);
+    color: $darkgrey;
+  }
+}
+
+.form-submit {
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: rgb(255,114,0); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(255,114,0,1) 0%, rgba(201,83,0,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,114,0,1)), color-stop(100%,rgba(201,83,0,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(255,114,0,1) 0%,rgba(201,83,0,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(255,114,0,1) 0%,rgba(201,83,0,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(255,114,0,1) 0%,rgba(201,83,0,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(255,114,0,1) 0%,rgba(201,83,0,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7200', endColorstr='#c95300',GradientType=0 ); /* IE6-9 */
+
+  position: relative;
+
+  @include all-vendors('box-shadow', 2px 2px 0px $darkorange);
+  @include all-vendors('transition', all .2s);
+
+  &:active {
+    top: 2px;
+    left: 2px;
+    @include all-vendors('box-shadow', 0px 0px 0px transparent)
+  }
+}
+
+span.wpcf7-not-valid-tip {
+  color: #f66;
+  text-shadow: 1px 1px 0px #222;
+  width: 280px;
+  padding: 0px 0 0 20px;
+  background: transparent;
+  border: 0 none;
+  font-size: inherit;
+  margin: 0;
+  position: relative;
+  top: auto;
+  left: auto;
+}
+
+div.wpcf7-mail-sent-ok {
+  font-size: 1.3em;
+  color: #398f14;
+}
+
+div.wpcf7-mail-sent-ng {
+  font-size: 1.3em;
+  color: #f7e700;
+}
+
+span.wpcf7-form-control-wrap {
+  position: relative;
+  display: block;
+  margin: 0;
+}
+
+div.wpcf7-validation-errors {
+  color: #F7E700;
+  font-size: 1.3em;
+}
+
+div.wpcf7-response-output {
+  border: 0 none;
+  text-shadow: 1px 1px 0 #222;
+  margin: 0;
+}
+
+/**
+ *  Misc.
+ */
+ .full-width {
+  width: 100%;
+  @include all-vendors(box-sizing, border-box);
+}
+
+.quote-background {
+  background: url('img/quote-bg.gif') no-repeat top right;
+  min-height: 50px;
+}
+
+.primary .quote-background {
+  background-position: top 0px right 2px;
+  padding: 10px 50px 10px 10px;
+  background-color: #fff;
+  color: #000;
+  font-style: italic;
+}
+
+.sec-black, .sec-black p {
+  color: #000;
+}
+
+.sec-padded {
+  padding: 10px;
+  width: 260px;
+}
+
+/**
+ *  Gallery
+ */
+ .gallery-primary {
+  width: 606px;
+}
+
+.gallery-sidebar {
+  width: 290px;
+  color: #fff;
+  background-color: $darkgrey;
+  padding: 0;
+}
+
+.gallery-sidebar h2 {
+  color: $lightergrey;
+}
+
+.gallery-heading {
+  margin-bottom: 5px;
+}
+
+.gallery-wrapper .ngg-gallery-thumbnail img {
+  margin: 0 0 10px 10px;
+}
+
+.gallery-wrapper .ngg-galleryoverview {
+  margin: 0 0 0 -10px;
+  width: 924px;
+}
+div.wpcf7 img.ajax-loader{
+  border: none;
+  vertical-align: middle;
+  margin: 5px auto 0;
+  display: block;
+}
+
+.return-link {
+  font-size: 1.3em;
+}
+
+/**
+* Ngg Gallery
+*/
+
+.gallery-wrapper .ngg-album {
+  background-color: #444;
+  padding: 10px;
+  margin-bottom: 10px;
+  float: left;
+  width: 30%;
+  min-height: 240px;
+  margin: 0 0 0 1.5%;
+  border: 0 none;
+
+  &:first-child {
+    margin: 0;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 70%;
+  }
+
+  .ngg-thumbnail {
+    padding:0;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 10px 0;
+    float: none;
+
+    img {
+      border: 0 none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
