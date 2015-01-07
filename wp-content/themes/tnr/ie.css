@@ -1,10 +1,13 @@
 body {
-  background-color: #141414; }
+  background-color: #141414;
+}
 
 .ie7 .feature {
-  height: 258px; }
+  height: 258px;
+}
 
 .ie7 .header-offset {
   position: absolute;
   right: 0;
-  top: 0; }
+  top: 0;
+}

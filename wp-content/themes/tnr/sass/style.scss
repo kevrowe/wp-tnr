@@ -590,15 +590,14 @@ div.wpcf7 img.ajax-loader{
 .gallery-wrapper .ngg-album {
   background-color: #444;
   padding: 10px;
-  margin-bottom: 10px;
   float: left;
   width: 30%;
   min-height: 240px;
-  margin: 0 0 0 1.5%;
+  margin: 0 0 10px 1.5%;
   border: 0 none;
 
-  &:first-child {
-    margin: 0;
+  &:nth-child(3n+1) {
+    margin-bottom: 0;
   }
 
   img {
