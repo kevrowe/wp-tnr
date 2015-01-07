@@ -623,7 +623,7 @@ div.wpcf7 img.ajax-loader {
   border: 0 none;
 }
 .gallery-wrapper .ngg-album:nth-child(3n+1) {
-  margin-bottom: 0;
+  margin-left: 0;
 }
 .gallery-wrapper .ngg-album img {
   max-width: 100%;
